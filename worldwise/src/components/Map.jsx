@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import styles from "./Map.module.css";
+import { useNavigate } from "react-router-dom";
 import {
   MapContainer,
   TileLayer,
@@ -9,15 +7,16 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
+
+import styles from "./Map.module.css";
+import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesContext";
-import { useEffect } from "react";
 import { useGeolocation } from "../hooks/useGeolocation";
-import Button from "./Button";
 import { useUrlPosition } from "../hooks/useUrlPosition";
+import Button from "./Button";
 
 function Map() {
   const { cities } = useCities();
-  const navigate = useNavigate();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const {
     isLoading: isLoadingPosition,
@@ -25,15 +24,6 @@ function Map() {
     getPosition,
   } = useGeolocation();
   const [mapLat, mapLng] = useUrlPosition();
-
-  const flagemojiToPNG = (flag) => {
-    var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
-      .map((char) => String.fromCharCode(char - 127397).toLowerCase())
-      .join("");
-    return (
-      <img src={`https://flagcdn.com/24x18/${countryCode}.png`} alt="flag" />
-    );
-  };
 
   useEffect(
     function () {
@@ -57,9 +47,10 @@ function Map() {
           {isLoadingPosition ? "Loading..." : "Use your position"}
         </Button>
       )}
+
       <MapContainer
-        center={[mapLat, mapLng]}
-        zoom={16}
+        center={mapPosition}
+        zoom={6}
         scrollWheelZoom={true}
         className={styles.map}
       >
@@ -73,8 +64,7 @@ function Map() {
             key={city.id}
           >
             <Popup>
-              <span>{flagemojiToPNG(`${city.emoji}`)}</span>
-              <span>{city.cityName}</span>
+              <span>{city.emoji}</span> <span>{city.cityName}</span>
             </Popup>
           </Marker>
         ))}

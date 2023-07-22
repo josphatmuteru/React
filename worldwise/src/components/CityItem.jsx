@@ -34,7 +34,7 @@ function CityItem({ city }) {
         className={`${styles.cityItem} ${
           id === currentCity.id ? styles["cityItem--active"] : ""
         }`}
-        to={`${city.id}?lat=${position.lat}&lng=${position.lng}`}
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
       >
         <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
 
@@ -47,5 +47,4 @@ function CityItem({ city }) {
     </li>
   );
 }
-
 export default CityItem;
