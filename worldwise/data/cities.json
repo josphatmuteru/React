@@ -38,6 +38,7 @@
     },
     {
       "cityName": "Pozoantiguo",
+      "country": "Spain",
       "emoji": "🇪🇸",
       "date": "2023-07-21T20:53:50.106Z",
       "notes": "great",
@@ -46,6 +47,18 @@
         "lng": "-5.4236626625061035"
       },
       "id": 98443198
+    },
+    {
+      "cityName": "Hijar",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-07-22T20:33:16.993Z",
+      "notes": "iajfiaji",
+      "position": {
+        "lat": "41.180120586600715",
+        "lng": "-0.4808054307384314"
+      },
+      "id": 98443200
     }
   ]
 }

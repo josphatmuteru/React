@@ -56,6 +56,7 @@ function Form() {
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
+          console.log(data.countryName);
 
           if (!data.countryCode)
             throw new Error(
@@ -63,7 +64,7 @@ function Form() {
             );
 
           setCityName(data.city || data.locality || "");
-          setCountry(data.country);
+          setCountry(data.countryName);
           setEmoji(convertToEmoji(data.countryCode));
         } catch (err) {
           setGeoCodingError(err.message);
